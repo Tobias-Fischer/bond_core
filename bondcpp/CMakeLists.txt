@@ -16,10 +16,7 @@ find_package(rclcpp_lifecycle REQUIRED)
 find_package(smclib REQUIRED)
 find_package(Threads REQUIRED)
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(UUID REQUIRED uuid)
-# we have to find the absolute path to uuid as target_link_directories is not available before cmake 3.13
-find_library(uuid_ABS_PATH ${UUID_LIBRARIES} PATHS ${UUID_LIBRARY_DIRS})
+find_path(UUID_INCLUDE_DIRS uuid/uuid.h)
 
 add_library(${PROJECT_NAME}
   SHARED
@@ -34,7 +31,7 @@ ament_target_dependencies(${PROJECT_NAME}
   rclcpp
   rclcpp_lifecycle
   smclib)
-target_link_libraries(${PROJECT_NAME} ${uuid_ABS_PATH})
+target_link_libraries(${PROJECT_NAME})
 
 install(
   TARGETS ${PROJECT_NAME}
