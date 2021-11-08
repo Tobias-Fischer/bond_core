@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(bondcpp)
 
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
 endif()
